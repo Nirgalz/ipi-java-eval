@@ -1,65 +1,82 @@
 package com.ipiecoles.java.javaeval;
 
+import com.ipiecoles.java.javaeval.model.Employe;
+import com.ipiecoles.java.javaeval.model.Manager;
+import com.ipiecoles.java.javaeval.model.Technicien;
+import com.ipiecoles.java.javaeval.repository.TechnicienRepository;
+import org.joda.time.LocalDate;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.List;
 
 @Component
-public class MyRunner implements CommandLineRunner {
-
+public class MyRunner implements CommandLineRunner{
+//    private TechnicienRepository technicienRepository;
+//    public void setTechnicienRepository(TechnicienRepository technicienRepository)
+//    {
+//        this.technicienRepository = technicienRepository;
+//    }
     @Override
     public void run(String... strings) throws Exception {
         Connection connexion = initConnection();
         Statement statement = connexion.createStatement();
-        ResultSet resultSet = statement.executeQuery("SELECT * FROM Employe LIMIT 10");
+        ResultSet resultSet = statement.executeQuery("SELECT * FROM Employe");
         while ( resultSet.next() ) {
             print(resultSet.getString("nom"));
             print(resultSet.getDate("dateEmbauche"));
         }
 
-        /*Technicien t = technicienRepository.findOne(4L);
-        print(t);
 
-        Manager m = managerRepository.findOneWithEquipeById(43L);
-        print(m);
-        m.getEquipe().stream().forEach(MyRunner::print);
-        m.setPrenom(m.getPrenom().toUpperCase());
-        managerRepository.save(m);
 
-        print(employeRepository.count());
 
-        List<Employe> list = employeRepository.findByNomAndPrenom("Adam", "Laura");
-        list.stream().map(Employe::toString).forEach(MyRunner::print);
 
-        list = employeRepository.findByDateEmbaucheBefore(new LocalDate(2012,07,28));
-        list.stream().map(Employe::toString).forEach(MyRunner::print);
+//        Technicien t = technicienRepository.findOne(4L);
+//        print(t);
 
-        list = employeRepository.findByDateEmbaucheAfter(new LocalDate(2012,07,28));
-        list.stream().map(Employe::toString).forEach(MyRunner::print);
-
-        list = employeRepository.findBySalaireGreaterThanOrderBySalaireDesc(2000.0);
-        list.stream().map(Employe::toString).forEach(MyRunner::print);
-
-        list = employeRepository.findByNomOrPrenomAllIgnoreCase("adam");
-        list.stream().map(Employe::toString).forEach(MyRunner::print);
-
-        PageRequest pageRequest = new PageRequest(0, 5, Sort.Direction.ASC, "matricule");
-
-        Page<Technicien> techs = technicienRepository.findByNomIgnoreCase("adam", pageRequest);
-        while(pageRequest.next()){
-
-            techs.forEach(MyRunner::print);
-        }
-        print("coucou");
-        print("coucou3");
-        techs = technicienRepository.findByNomIgnoreCase("adam", pageRequest.next());
-        techs.forEach(MyRunner::print);
-
-        print(technicienRepository.findByNomOrPrenomAllIgnoreCase("adam").size());
-        print(employeRepository.findByNomOrPrenomAllIgnoreCase("adam").size());*/
+//        Manager m = managerRepository.findOneWithEquipeById(43L);
+//        print(m);
+//        m.getEquipe().stream().forEach(MyRunner::print);
+//        m.setPrenom(m.getPrenom().toUpperCase());
+//        managerRepository.save(m);
+//
+//        print(employeRepository.count());
+//
+//        List<Employe> list = employeRepository.findByNomAndPrenom("Adam", "Laura");
+//        list.stream().map(Employe::toString).forEach(MyRunner::print);
+//
+//        list = employeRepository.findByDateEmbaucheBefore(new LocalDate(2012,07,28));
+//        list.stream().map(Employe::toString).forEach(MyRunner::print);
+//
+//        list = employeRepository.findByDateEmbaucheAfter(new LocalDate(2012,07,28));
+//        list.stream().map(Employe::toString).forEach(MyRunner::print);
+//
+//        list = employeRepository.findBySalaireGreaterThanOrderBySalaireDesc(2000.0);
+//        list.stream().map(Employe::toString).forEach(MyRunner::print);
+//
+//        list = employeRepository.findByNomOrPrenomAllIgnoreCase("adam");
+//        list.stream().map(Employe::toString).forEach(MyRunner::print);
+//
+//        PageRequest pageRequest = new PageRequest(0, 5, Sort.Direction.ASC, "matricule");
+//
+//        Page<Technicien> techs = technicienRepository.findByNomIgnoreCase("adam", pageRequest);
+//        while(pageRequest.next()){
+//
+//            techs.forEach(MyRunner::print);
+//        }
+//        print("coucou");
+//        print("coucou3");
+//        techs = technicienRepository.findByNomIgnoreCase("adam", pageRequest.next());
+//        techs.forEach(MyRunner::print);
+//
+//        print(technicienRepository.findByNomOrPrenomAllIgnoreCase("adam").size());
+//        print(employeRepository.findByNomOrPrenomAllIgnoreCase("adam").size());
 
     }
 
