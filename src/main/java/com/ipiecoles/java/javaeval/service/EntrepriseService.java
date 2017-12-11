@@ -11,6 +11,7 @@ public class EntrepriseService
 {
     @Autowired
     private EntrepriseRepository entrepriseRepository;
+    @Autowired
     private EmployeService employeService;
 
     @Autowired
